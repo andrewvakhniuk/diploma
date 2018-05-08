@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    {#<meta name="description"#}
+    {#content="Магазин InPlay. Торофлакс - іграшка, яка гіпнотизує. Вироблена з металу. Ідеальний подарунок дитині і дорослому. Здивує, розважить, розслабить, або просто займе час. Спіннер 2.0. Купить, заказать, Украина, Киев, Україна, Київ, купити, спиннер 2.0, кинетическая игрушка">#}
+    {#<title>{% block title %}ТОРОФЛАКС Кінетична іграшка, яка гіпнотизує, або спіннер 2.0. Оберти в 3D (Toroflux, Magic ring, Flow Toy). Купити, замовити, відгуки. InPlay{% endblock %}</title>#}
+
+    {# -- open graph tags#}
+    {#<meta property="fb:app_id" content="235586170334987" />#}
+    {#<meta property="og:title" content="Торофлакс - іграшка, яка гіпнотизує, або спіннер 2.0. Оберти в 3D." />#}
+    {#<meta property="og:description" content="Магазин InPlay. Торофлакс - іграшка, яка гіпнотизує. Вироблена з металу. Ідеальний подарунок дитині і дорослому. Здивує, розважить, розслабить, або просто займе час. Спіннер 2.0. Купить, заказать, Украина, Киев, Україна, Київ, купити, спиннер 2.0, кинетическая игрушка" />#}
+    {#<meta property="og:type" content="product" />#}
+    {#<meta property="og:url" content="http://inplay.com.ua/" />#}
+    {#<meta property="og:image" content="{{ app.request.uriForPath('/assets/images/header-bg.jpg') }}" />#}
+    {#<meta property="og:image:alt" content="{{ app.request.uriForPath('/assets/images/header-bg.jpg') }}" />#}
+    {#<meta property="og:locale" content="uk_UA" />#}
+    {#<meta property="og:locale:alternate" content="ru_RU" />#}
+    {#<meta property="og:site_name" content="InPlay" />#}
+    {# -- END openn graph#}
+
+
+    <link rel="icon" type="image/x-icon" href="{{ app.request.uriForPath('/assets/images/pagename.ico') }}"/>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
+            integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D"
+            crossorigin="anonymous"></script>
+    {% block stylesheets %}{% endblock %}
+
+    {#base css#}
+    <link href="{{ asset('assets/css/base.css') }}" rel="stylesheet">
+
+</head>
+<body>
+
+
+{#-- START navigation bar --#}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('homepage') }}">Toroflux</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+            <ul class="nav navbar-nav ">
+
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ path('fos_user_change_password') }}">
+                        Change Password
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ path('fos_user_profile_edit') }}">
+                        Edit Profile
+                    </a>
+                </li>
+                <li class="dropdown nav-item ">
+                    {% include 'locale.html.twig' %}
+                </li>
+
+                {#--------- if logged in -----------#}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+                        <span class="glyphicon glyphicon-log-out"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+{#-- END navigation bar --#}
+
+
+<div id="error-messages">
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% block errors %}
+    {% endblock %}
+</div>
+
+{% block outerbody %}{% endblock %}
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
