@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subpages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Active</th>
+                <th>Content</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subPage in subPages %}
+            <tr>
+                <td><a href="{{ path('subpage_show', { 'id': subPage.id }) }}">{{ subPage.id }}</a></td>
+                <td>{% if subPage.active %}Yes{% else %}No{% endif %}</td>
+                <td>{{ subPage.content }}</td>
+                <td>{{ subPage.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('subpage_show', { 'id': subPage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('subpage_edit', { 'id': subPage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subpage_new') }}">Create a new subPage</a>
+        </li>
+    </ul>
+{% endblock %}

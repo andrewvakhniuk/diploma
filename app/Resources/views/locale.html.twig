@@ -11,15 +11,17 @@
 {% endif %}
 {# You may want to not print a flag/link for some route , the "if" here let you handle it #}
 
+
 <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
-    {{ app.request.locale|trans }}
+    <img style="width:25px;" src="{{ asset('assets/images/flags/'~app.request.locale~'.svg') }}"></img>
 </a>
 <ul class="dropdown-menu list-unstyled" aria-labelledby="navbarDropdown">
     {% for locale in app_locales|split('|') if locale != app.request.locale %}
 
         <li style="margin-left:25px">
             <a href="{{ path(route, params|merge({ _locale: locale })) }}">
-                {{ locale|trans }}
+                <img style="width:25px;border: solid grey thin;" src="{{ asset('assets/images/flags/'~locale~'.svg') }}"></img>
+
             </a>
         </li>
     {% endfor %}

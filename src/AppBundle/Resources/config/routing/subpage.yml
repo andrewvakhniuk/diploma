@@ -1,0 +1,29 @@
+subpage_index:
+    path:     /
+    defaults: { _controller: "AppBundle:SubPage:index" }
+    methods:  GET
+
+subpage_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:SubPage:show" }
+    methods:  GET
+
+subpage_new:
+    path:     /{page_id}/new
+    defaults: { _controller: "AppBundle:SubPage:new" }
+    methods:  [GET, POST]
+
+subpage_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:SubPage:edit" }
+    methods:  [GET, POST]
+
+subpage_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:SubPage:delete" }
+    methods:  DELETE
+
+subpage_content:
+    path:     /{id}/content
+    defaults: { _controller: "AppBundle:SubPage:content" }
+    methods:  GET

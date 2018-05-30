@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <hr>
+    <h1>{{ 'users'|trans }}</h1>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                {{ 'username'|trans }}
+            </th>
+            <th>
+                {{ 'email'|trans }}
+            </th>
+            <th>
+                {{ 'enabled'|trans }}
+            </th>
+            <th>
+                {{ 'actions'|trans }}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+                <td>
+                    {% if user.enabled %}{{ 'yes'|trans }}{% else %}{{ 'no'|trans }}{% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('user_show',{'id':user.id}) }}" class="btn-primary btn"><i style="margin-right: 10px;" class="fa fa-navicon"></i>{{ 'details'|trans }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

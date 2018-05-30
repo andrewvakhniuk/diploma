@@ -6,9 +6,19 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: uk #default locale
-    app_locales: uk|ru
 
+    locale: en #default locale
+    app_locales: uk|en|pl
+    locales: [uk, pl, en]
+#    for the translatable forms
+    files_directory: '%kernel.root_dir%/../web/uploads/files'
+    roles: [               ROLE_ACCESS_TO_VIEW_ALL_PAGES,
+                           ROLE_ACCESS_TO_EDIT_ALL_PAGES,
+                           ROLE_ADD_PAGE,
+                           ROLE_ADD_LIBRARY,
+                           ROLE_EDIT_LIBRARY,
+                           ROLE_PERMISSION_PANEL
+                         ]
 framework:
     templating:
         engines: ['twig']
@@ -43,7 +53,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_3_layout.html.twig']
+    form_themes: ['SimettricDoctrineTranslatableFormBundle:Form:fields.html.twig','bootstrap_4_layout.html.twig'] #'SimettricDoctrineTranslatableFormBundle:Form:fields.html.twig' -- translatable theme
     globals:
         app_locales: '%app_locales%'
 
@@ -72,6 +82,22 @@ doctrine:
             string_functions:
                 DATE_FORMAT: AppBundle\DQL\DateFormatFunction
 
+        mappings:
+            gedmo_translatable:
+                type: annotation
+                prefix: Gedmo\Translatable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+                is_bundle: false
+
+stof_doctrine_extensions:
+    default_locale: %locale%
+    translation_fallback: true
+    persist_default_translation: true
+    orm:
+        default:
+            translatable: true
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
@@ -80,7 +106,7 @@ swiftmailer:
     password: '%mailer_password%'
 #    auth_mode: '%mailer_auth_mode%'
 #    encryption: '%mailer_encryption%'
-    port:      '%mailer_port%'
+#    port:      '%mailer_port%'
     spool: { type: memory }
 
 fos_user:
@@ -90,3 +116,6 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+    registration:
+            confirmation:
+                enabled: true

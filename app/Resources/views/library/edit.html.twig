@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'library.edit'|trans }}</h1>
+
+    {{ form_start(edit_form) }}
+    {{ form_row(edit_form.name, {label: "appellation"|trans}) }}
+    <br>
+    <hr>
+    <input class="btn btn-primary" type="submit" value="{{ 'edit'|trans }}"/>
+    {{ form_end(edit_form) }}
+
+   <hr>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn btn-secondary" href="{{ path('library_index') }}">{{ 'back.to.the.list'|trans }}</a>
+
+            <div class="float-right">
+                {{ form_start(delete_form) }}
+                <input class="btn-danger btn" type="submit" value="{{ 'delete'|trans }}">
+                {{ form_end(delete_form) }}
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            // START style tabs language
+            $('.nav-tabs li').each(function () {
+                $(this).addClass('nav-item');
+                if ($(this).hasClass('active')) {
+                    $(this).find('a').addClass('active');
+                }
+                $(this).find('a').addClass('nav-link');
+            });
+            // END style tabs language
+        });
+    </script>
+{% endblock %}

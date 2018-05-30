@@ -1,0 +1,19 @@
+{% if hasPages or is_granted('ROLE_PERMISSION_PANEL') %}
+    <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-gear"></i>
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if hasPages %}
+                <a class="dropdown-item" href="{{ path('page_index') }}">{{ 'pages'|trans }}</a>
+            {% endif %}
+            {% if is_granted('ROLE_PERMISSION_PANEL') %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('user_index') }}">{{ 'users'|trans }}</a>
+            {% endif %}
+        </div>
+    </li>
+{% endif %}

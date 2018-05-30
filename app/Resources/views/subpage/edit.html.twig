@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'subpage.edit'|trans }}</h1>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input class="btn-primary btn" type="submit" value="{{ 'edit'|trans }}"/>
+    {{ form_end(edit_form) }}
+
+    <br>
+    {{ form_start(delete_form) }}
+    <input class="btn-danger btn" type="submit" value="{{ 'delete'|trans }}">
+    {{ form_end(delete_form) }}
+
+    <br>
+    <a class="btn-secondary btn" href="{{ path('page_show',{'id':subPage.getPage().getId()}) }}">{{ 'back.to.the.main.page'|trans }} {{ subPage.getPage().getName() }} </a>
+
+{% endblock %}

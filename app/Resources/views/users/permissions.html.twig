@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2 style="text-align: center;">{{ user.username }}: {{ 'user.permissions'|trans }}</h2>
+    <hr>
+
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <hr>
+    <input class="btn-primary btn" type="submit" value="{{ 'save'|trans }}"/>
+    {{ form_end(form) }}
+
+{% endblock %}
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+
+            $('#user_permissions_availablePages').select2();
+            $('#user_permissions_editablePages').select2();
+
+        });
+    </script>
+{% endblock %}

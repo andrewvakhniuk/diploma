@@ -1,0 +1,35 @@
+AppBundle\Entity\SubPage:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\SubPageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        active:
+            type: boolean
+        content:
+            type: string
+            length: '10000'
+            nullable: true
+            gedmo:
+              - translatable
+        name:
+            type: string
+            length: 255
+            gedmo:
+              - translatable
+#    manyToOne:
+#        page:
+#            targetEntity: Page
+#            inversedBy: subPages
+#            joinColumn:
+#                name: page_id
+#                referencedColumnName: id
+#                onDelete: 'CASCADE'
+
+
+    lifecycleCallbacks: {  }

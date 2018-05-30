@@ -31,14 +31,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
             integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
             integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D"
             crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     {% block stylesheets %}{% endblock %}
+    {% block stylesheets_fos_user %}{% endblock %}
 
     {#base css#}
     <link href="{{ asset('assets/css/base.css') }}" rel="stylesheet">
@@ -49,63 +49,95 @@
 
 {#-- START navigation bar --#}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark   " style="box-shadow: 0 2px 2px -2px grey;background-color: #888888;">
     <div class="container">
-        <a class="navbar-brand" href="{{ path('homepage') }}">Toroflux</a>
+        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('assets/images/braillescore.gif') }}"></img></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
-            <ul class="nav navbar-nav ">
+        <div class="collapse navbar-collapse" id="navbarNav" >
+            <ul class=" nav navbar-nav mr-auto">
+
+                {{ render(controller('AppBundle\\Controller\\DefaultController::navbarConfigurations')) }}
 
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ path('fos_user_change_password') }}">
-                        Change Password
-                    </a>
+                    <a class="nav-link" href="{{ path('homepage') }}">{{ 'main.page'|trans }} <span class="sr-only"></span></a>
                 </li>
+                {#embedded controller navbar.html.twig#}
+                {{ render(controller('AppBundle\\Controller\\DefaultController::navbar')) }}
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ path('fos_user_profile_edit') }}">
-                        Edit Profile
-                    </a>
+                    <a class="nav-link" href="{{ path('library_index') }}">{{ 'library'|trans }} <span class="sr-only"></span></a>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav justify-content-end">
+
+                {#--------- if logged in -----------#}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_profile_show') }}">
+                            <span class="fa fa-user"> {{ app.user.username }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+                            <span class="	fa fa-sign-out"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
+                        </a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_login') }}">
+                            <span class="fa fa-sign-in"> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="dropdown nav-item ">
                     {% include 'locale.html.twig' %}
                 </li>
-
-                {#--------- if logged in -----------#}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
-                        <span class="glyphicon glyphicon-log-out"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
-                    </a>
-                </li>
-
             </ul>
         </div>
+
     </div>
 </nav>
 {#-- END navigation bar --#}
 
 
 <div id="error-messages">
-    {% for type, messages in app.session.flashBag.all %}
-        {% for message in messages %}
-            <div class="{{ type }}">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% block errors %}
-    {% endblock %}
+    {#***** -- flashback messages  --  *****#}
+    <div id="flashback-messages">
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }} alert alert-{{ type }} alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        {% block flashback_messages %}{% endblock %}
+    </div>
 </div>
 
 {% block outerbody %}{% endblock %}
 
-<div class="container">
-    {% block body %}{% endblock %}
-</div>
+<div class="container my-container  ">
+    <div class="row">
+        <div class="col">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
 
-{% block javascripts %}{% endblock %}
+</div>
+<nav class="navbar bottom navbar-dark bg-primary" style="height: 23px;line-height: 10px;box-shadow: 0 2px 2px 2px grey;top:-22px;">
+    <div class="container" >
+        <div class="navbar-text" style="text-align: center;" >Politechnika Warszawska 2018</div>
+    </div>
+</nav>
+{% block javascripts %}
+
+{% endblock %}
 </body>
 </html>

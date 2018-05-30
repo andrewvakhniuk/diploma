@@ -1,3 +1,7 @@
+app_subpage:
+    resource: "@AppBundle/Resources/config/routing/subpage.yml"
+    prefix:   /subpage
+
 
 #------------------ fos_user --------------
 fos_user_security:
@@ -27,5 +31,18 @@ homepage:
     defaults: { _controller: "AppBundle:Default:index" }
     methods:  [GET,POST]
 
+app_bundle_page:
+    resource: "@AppBundle/Resources/config/routing/page.yml"
+    prefix: /page
 
+app_bundle_subpage:
+    resource: "@AppBundle/Resources/config/routing/subpage.yml"
+    prefix: /subpage
 
+app_bundle_library:
+    resource: "@AppBundle/Resources/config/routing/library.yml"
+    prefix: /library
+
+app_bundle_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix: /user

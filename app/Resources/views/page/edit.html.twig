@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <hr>
+    <h1 style="text-align: center;">{{ 'edit.page'|trans }}</h1>
+    <hr>
+    {{ form_start(edit_form) }}
+    {{ form_row(edit_form.active) }}
+    {{ form_row(edit_form.public) }}
+
+    <div class="form-group">
+        {{ form_row(edit_form.name, {label: "appellation"|trans}) }}
+    </div>
+
+    <hr>
+    <div class="form-group">
+        {{ form_row(edit_form.content, {label: "content"|trans}) }}
+    </div>
+
+    {{ form_widget(edit_form) }}
+    <br>
+
+    <input class="btn-primary btn" type="submit" value="{{ 'edit'|trans }}"/>
+    {{ form_end(edit_form) }}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="float-right">
+                {{ form_start(delete_form) }}
+                <input class="btn-danger btn" type="submit" value="{{ 'delete'|trans }}">
+                {{ form_end(delete_form) }}
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    {% if page.main %}
+        <a class="btn-secondary btn" href="{{ path('page_index') }}">{{ 'back.to.the.list'|trans }}</a>
+    {% else %}
+        <a class="btn-secondary btn"
+           href="{{ path('page_show',{'id':page.getMainPage().getId()}) }}">{{ 'back.to.the.main.page'|trans }} {{ page.getMainPage().getName() }} </a>
+    {% endif %}
+{% endblock %}
+
+
+{% block javascripts %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+    <script>
+
+        $('body form').on('submit', function (e) {
+
+            $('.text-editor').each(function () {
+                var markupStr = $(this).summernote('code');
+                $(this).val(markupStr);
+            });
+        });
+        $(document).ready(function () {
+            //init
+            $('.text-editor').each(function () {
+                var markupStr = $(this).summernote('code', $(this).val());
+            });
+
+            // START style tabs language
+            $('.nav-tabs li').each(function () {
+                $(this).addClass('nav-item');
+                if ($(this).hasClass('active')) {
+                    $(this).find('a').addClass('active');
+                }
+                $(this).find('a').addClass('nav-link');
+            });
+            // END style tabs language
+        });
+    </script>
+{% endblock %}

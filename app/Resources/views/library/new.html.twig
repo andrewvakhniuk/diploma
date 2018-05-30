@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'library.creation'|trans }}</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.name, {label: "appellation"|trans}) }}
+    <br>
+    {{ form_row(form.file) }}
+
+    {#{{ form_widget(form) }}#}
+    <hr>
+    <input class="btn-primary btn" type="submit" value="{{ 'create'|trans }}"/>
+    {{ form_end(form) }}
+
+    <br>
+    <a  class="btn-secondary btn"  href="{{ path('library_index') }}">{{ 'back.to.the.list'|trans }}</a>
+    <hr>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            // START style tabs language
+            $('.nav-tabs li').each(function () {
+                $(this).addClass('nav-item');
+                if ($(this).hasClass('active')) {
+                    $(this).find('a').addClass('active');
+                }
+                $(this).find('a').addClass('nav-link');
+            });
+            // END style tabs language
+        });
+    </script>
+{% endblock %}

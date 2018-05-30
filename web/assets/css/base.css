@@ -8,3 +8,63 @@
 .navbar-inverse .navbar-nav>li>a {
     color: white;
 }
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+/*.my-container {*/
+    /*z-index: 0;*/
+    /*!*display: flex;*!*/
+    /*min-height: 100%;*/
+    /*background-color: white;*/
+
+/*}*/
+.my-container{
+    background-color:  hsl(0,0%,99%);
+    min-height: 100%;
+    margin-top:-104px;
+    padding-top:130px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: 3px 0 8px -4px grey, -3px 0 8px -4px grey;
+    /*text-align: center;*/
+    padding-left:100px;
+    padding-right: 100px;
+    padding-bottom: 100px;
+}
+body{
+    background-color: hsl(0,0%,90%);
+}
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+#flashback-messages{
+    /*width:80%;*/
+    position: absolute;
+    z-index: 99;
+    right: 50px ;
+    /*left: 50%;*/
+    width: 450px;
+    /*margin-left: -250px;*/
+    /*background:white;*/
+    /*box-shadow: 0 0 5px 1px grey;*/
+    opacity: 0.95;
+    height: 0px;
+}
+#flashback-messages .alert{
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    margin-left:5px;
+    margin-right: 5px;
+    box-shadow: 0 0 5px 1px grey;
+    border-radius: 0;
+    /*width:100%;*/
+}
+#flashback-messages .alert:hover{
+    opacity: 1;
+    box-shadow: 0 0 5px 1px black;
+    cursor: pointer;
+}

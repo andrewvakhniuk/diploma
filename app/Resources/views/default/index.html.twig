@@ -1,10 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block outerbody %}
+{% block body %}
 
+    <h2 style="text-align: center;"> {{ 'mainpage'|trans }}</h2>
+
+
+    <hr>
+    <br>
+    <p>
+        {{ 'mainpage.content'|trans }}
+    </p>
+
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <img style="margin:auto" src="http://braillescore.ibspan.waw.pl/images/main_gotove.png">
+
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
-
 
 {% endblock %}

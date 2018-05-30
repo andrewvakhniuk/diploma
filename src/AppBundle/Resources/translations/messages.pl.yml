@@ -1,0 +1,63 @@
+main.page: Główna
+library: Biblioteka
+pages: Strony
+users: Użytkownicy
+
+#pages
+appellation: Nazwa
+active: Aktywna
+public: Publiczna
+private: Prywatna
+
+actions: Funkcje
+main.pages: Strony główne
+create.new.page: Utwórz nową stronę
+details: Szczegóły
+edit: Edytuj
+content: Treść
+page.creation: Tworzenie strony
+create: Stwórz
+edit.page: Edycja strony
+
+back.to.the.list: Powrót do listy
+
+delete: Usuń
+add.subpage: Dodaj podstronę
+subpages: Podstrony
+
+yes: Tak
+no: Nie
+
+#library
+show: Pokaż
+library.edit: Edytuj bibliotekę
+add.library: dodaj bibliotekę
+file: Plik
+library.creation: Tworzenie biblioteki
+access.denied: Odmowa dostępu
+mainpage: Strona główna
+
+library.content: Biblioteka zawiera przykładowe utwory muzyczne w zestawach:- drukowana notacja muzyczna (pdf).
+mainpage.content: Niniejsza strona jest poświęcona projektowi Usuwanie barier funkcjonowania osób niepełnosprawnych w społeczeństwie informacyjnym. Braille Score - projekt i wykonanie komputerowego systemu przetwarzania informacji muzycznej dla osób niewidomych realizowanemu w Instytucie Badań Systemowych Polskiej Akademii Nauk w latach 2009-2012. Projekt był finansowany przez Narodowe Centrum Badań i Rozwoju. W ramach projektu zostały przygotowane publikacje naukowe, prezentacje konferencyjne oraz prototypowy program przetwarzania informacji muzycznych przeznaczony dla osób niewidomych.
+
+
+username: Nazwa użytkownika
+email: E-mail
+enabled: Włączony
+configure.permissions: Skonfiguruj uprawnienia
+status: Status
+last.login: Ostatnie logowanie
+disable: Wyłącz
+activate: Aktywuj
+user.details: Dane użytkownika
+available.pages.to.view: Dostęp do przeglądania następnych stron
+available.pages.to.edit: Dostęp do edycji kolejnych stron
+permission.to.view.all.pages:  Uprawnienie do przeglądania wszystkich stron
+permission.to.edit.all.pages: Uprawnienia na edycję wszystkich stron
+permission.to.add.new.page: Uprawnienia na utworzenie nowej strony
+permission.to.add.new.library: Uprawnienia na dodanie nowej biblioteki
+permission.to.edit.libraries: Uprawnienia do edycji bibliotek
+permission.to.check.users.and.control.their.permissions: Uprawnienia do sprawdzania użytkowników i kontrolowania ich uprawnień
+user.permissions: Uprawnienia użytkownika
+
+save: Zapisać

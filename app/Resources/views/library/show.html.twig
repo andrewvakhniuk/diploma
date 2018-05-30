@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block outerbody %}
+
+    <div style="position:absolute;width:100%;" id="presentation"></div>
+
+    {% if "ppt" in extension or "xls" in extension or "pdf" in extension or "doc" in extension %}
+
+        <script>
+            function createIframe(){
+                $('#presentation iframe').remove();
+                var i = document.createElement("iframe");
+                i.src = "http://docs.google.com/gview?url={{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}&embedded=true";
+                i.scrolling = "auto";
+                i.frameborder = "0";
+                i.width = "100%";
+                i.height = ($(window).height() - 50 )+'px' ;
+                document.getElementById("presentation").appendChild(i);
+            }
+            createIframe();
+
+            function reloadIframe(){
+                setTimeout(function () {
+                    // printFrame();
+                    var x = $('#presentation iframe')[0];
+                    var y = (x.contentWindow || x.contentDocument);
+                    if (y.document)
+                        y = y.document;
+                    if ($(y.body).html() === '') {
+                        createIframe();
+                        reloadIframe();
+                    }
+                },2000);
+            }
+            $(document).ready(function () {
+                reloadIframe();
+            });
+        </script>
+
+    {% else %}
+        <h2>{{ 'unknown.extension.of.file'|trans }}</h2>
+        <h3>{{ 'supported.extensions'|trans }}: ppt | xls | pdf | doc </h3>
+    {% endif %}
+{% endblock %}

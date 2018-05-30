@@ -29,7 +29,50 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+#translatable forms
+    app.form.page_type:
+        class: AppBundle\Form\PageType
+        arguments: ["@sim_trans_form.mapper"]
+        calls:
+            - [ setRequiredLocale, [%locale%] ]
+            - [ setLocales, [%locales%] ]
+        tags:
+            - { name: form.type }
+
+    app.form.library_type:
+        class: AppBundle\Form\LibraryType
+        arguments: ["@sim_trans_form.mapper"]
+        calls:
+            - [ setRequiredLocale, [%locale%] ]
+            - [ setLocales, [%locales%] ]
+        tags:
+            - { name: form.type }
+
+    #translatable forms
+
+    app.form.subpage_type:
+        class: AppBundle\Form\SubPageType
+        arguments: ["@sim_trans_form.mapper"]
+        calls:
+            - [ setRequiredLocale, [%locale%] ]
+            - [ setLocales, [%locales%] ]
+        tags:
+            - { name: form.type }
+
+#     file uploader
+    app.service.file_uploader:
+            class: AppBundle\Service\FileUploader
+            arguments: ['%files_directory%']
+            public: true
+
+#    add translator to user persiomssion form
+    app.form.user_permissions_type:
+        class: AppBundle\Service\UserPermissionsType
+        arguments: ['@translator']
+        public: true
+
+
+    AppBundle\EventListener\RegistrationConfirmedListener:
+        arguments: ["@doctrine.orm.entity_manager","@mailer"]
+        tags:
+            - { name: kernel.event_subscriber }

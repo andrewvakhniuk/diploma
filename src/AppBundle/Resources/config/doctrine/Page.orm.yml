@@ -1,0 +1,47 @@
+AppBundle\Entity\Page:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PageRepository
+    gedmo:
+      translation:
+        locale: locale
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        main:
+            type: boolean
+
+        name:
+            type: string
+            length: 255
+            gedmo:
+              - translatable
+        public:
+            type: boolean
+        active:
+            type: boolean
+        content:
+            type: string
+            length: '10000'
+            nullable: true
+            gedmo:
+              - translatable
+    oneToMany:
+        subPages:
+            targetEntity: Page
+            mappedBy: mainPage
+            cascade: ["persist","refresh"]
+    manyToOne:
+        mainPage:
+            targetEntity: Page
+            inversedBy: subPages
+            joinColumn:
+                name: page_id
+                referencedColumnName: id
+                onDelete: 'CASCADE'
+
+    lifecycleCallbacks: { }

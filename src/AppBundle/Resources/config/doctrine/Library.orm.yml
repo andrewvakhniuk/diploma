@@ -1,0 +1,23 @@
+AppBundle\Entity\Library:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\LibraryRepository
+    gedmo:
+      translation:
+        locale: locale
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            gedmo:
+              - translatable
+        file:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

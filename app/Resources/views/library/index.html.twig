@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center;">{{ 'library'|trans }}</h1>
+    <br>
+    <hr>
+    <p>{{ 'library.content'|trans }}</p>
+    <hr>
+    <ul style="margin:auto" class="list-group col-sm-10">
+        {% for library in libraries %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}">
+
+                <div style="display:inline-flex">
+                    <i  style="font-size: 40px;margin-right: 10px;color:grey" class="fa fa-download"></i>
+                    {%  set extension = library.file|split('.')|last  %}
+                        <i
+
+                                {% if  'doc' in  extension %}
+                                    style="font-size: 40px;color:dodgerblue;" class="fa fa-file-word-o"
+                                {% elseif 'xls' in  extension %}
+                                    style="font-size: 40px;color:green;" class="fa fa-file-excel-o"
+                                {% elseif 'ppt' in extension %}
+                                    style="font-size: 40px;color:orangered;"    class="	fa fa-file-powerpoint-o"
+                                {% elseif  'pdf' in extension %}
+                                    style="font-size: 40px;color:red;" class="fa fa-file-pdf-o"
+                                {% endif %}
+
+                        ></i>
+
+                    <h5 style="margin-left:20px;margin-top:10px;">{{ library.getName() }}</h5>
+
+                </div>
+                </a>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+                    <a href="{{ path('library_show',{'id':library.getId()}) }}" type="button"
+                       class="btn btn-primary"><i style="margin-right: 5px;" class="fa fa-eye"></i>{{ 'show'|trans }}</a>
+
+                    {% if is_granted('ROLE_EDIT_LIBRARY') %}
+                    <a href="{{ path('library_edit',{'id':library.getId()}) }}" type="button"
+                       class="btn btn-warning"><i class="fa fa-edit"></i>{{ 'edit'|trans }}</a>
+                    {%  endif %}
+                </div>
+            </li>
+
+        {% endfor %}
+        <br>
+        <hr>
+        {% if is_granted('ROLE_ADD_LIBRARY') %}
+        <a class="btn btn-primary col-sm-3" href="{{ path('library_new') }}"><i style="margin-right: 10px;" class="fa fa-plus"></i> {{ 'add.library'|trans }}</a>
+        {% endif %}
+    </ul>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subpage creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn-primary btn" type="submit" value="{{ 'create'|trans }}" />
+    {{ form_end(form) }}
+
+    <br>
+
+    <a class="btn-secondary btn" href="{{ path('page_show',{'id':page.getId()}) }}">{{ 'back.to.the.main.page'|trans }} {{ page.getName() }} </a>
+
+{% endblock %}

@@ -1,9 +1,19 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 {#{% form_theme form 'bootstrap_3_layout.html.twig' %}#}
 
 {% block body %}
 
     {% block fos_user_content %}
     {% endblock fos_user_content %}
+
+{% endblock %}
+
+{% block stylesheets_fos_user %}
+    <style>
+        .my-container{
+            background-color: transparent!important;
+            box-shadow: 0 0 0 0 transparent!important;
+        }
+    </style>
 
 {% endblock %}

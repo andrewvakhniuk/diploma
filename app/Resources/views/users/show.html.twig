@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>{{ 'user.details'|trans }}</h1>
+    <br>
+    <table class="table ">
+        <tr>
+            <th>
+                {{ 'status'|trans }}
+            </th>
+            <td>
+                <span style="display: inline-flex">
+                {% if user.isEnabled() == 1 %}
+
+                    <span style="color:green;font-size: 40px;margin-right: 15px;" class="fa fa-user"></span>
+                    {{ form_start(change_status_form) }}
+                    <button type="submit" class="btn btn-danger">{{ 'disable'|trans }}</button>
+                      {{ form_end(change_status_form) }}
+
+                {% else %}
+
+                    <span style="color:red;font-size: 40px;margin-right: 15px;" class="fa fa-user"></span>
+                    {{ form_start(change_status_form) }}
+                    <button type="submit" class="btn btn-primary">{{ 'activate'|trans }}</button>
+                    {{ form_end(change_status_form) }}
+
+                {% endif %}
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                {{ 'username'|trans }}
+            </th>
+            <td>
+                {{ user.username }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                {{ 'email'|trans }}
+            </th>
+            <td>
+                {{ user.email }}
+            </td>
+
+        </tr>
+        <tr>
+            <th>
+                {{ 'last.login'|trans }}
+            </th>
+            <td>
+                {% if user.lastlogin %}
+                    {{ user.lastlogin|date('Y-m-d') }}
+                {% endif %}
+            </td>
+
+        </tr>
+    </table>
+    <hr>
+    <a class="btn btn-primary"  href="{{ path('user_permissions',{'id':user.id })}}"> <i class="fa fa-gear"></i> {{ 'configure.permissions'|trans }}</a>
+{% endblock %}

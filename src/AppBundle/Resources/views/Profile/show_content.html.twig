@@ -1,6 +1,38 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <hr>
+    <span class="fa fa-user" style="font-size:100px;margin:10px;"> {{ 'profile'|trans }}</span>
+
+    <hr>
+    <table class="table table-stripped">
+
+        <tr>
+            <th>
+                {{ 'profile.show.username'|trans }}
+            </th>
+            <td>
+                {{ user.username }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                {{ 'profile.show.email'|trans }}
+            </th>
+            <td>
+                {{ user.email }}
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <br>
+    <div class="btn-group">
+        <a href="{{ path('fos_user_change_password') }}"
+           class="btn btn-primary">{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_profile_edit') }}"
+           class="btn btn-primary">{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}</a>
+    </div>
+
+    <hr>
 </div>
