@@ -26,7 +26,7 @@ AppBundle\Entity\Page:
             type: boolean
         content:
             type: string
-            length: '10000'
+            length: 1000000
             nullable: true
             gedmo:
               - translatable

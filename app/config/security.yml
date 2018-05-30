@@ -64,4 +64,4 @@ security:
         - { path: ^/(%app_locales%)/library/[0-9]+/delete, roles: ROLE_EDIT_LIBRARY }
         - { path: ^/(%app_locales%)/user/, roles: ROLE_PERMISSION_PANEL }
         - { path: ^/(%app_locales%)/library/, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/(%app_locales%)/page/, roles: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/(%app_locales%)/page/, roles: IS_AUTHENTICATED_FULLY }
