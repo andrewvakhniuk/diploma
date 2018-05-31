@@ -20,18 +20,24 @@
 /*}*/
 .my-container{
     background-color:  hsl(0,0%,99%);
+
     min-height: 100%;
     margin-top:-104px;
     padding-top:130px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: 3px 0 8px -4px grey, -3px 0 8px -4px grey;
+    box-shadow: 10px 0 8px -4px grey, -10px 0 8px -4px grey;
     /*text-align: center;*/
     padding-left:100px;
     padding-right: 100px;
     padding-bottom: 100px;
+
+    opacity: 0.97;
+    z-index: 1;
+
 }
 body{
+    background-image: url("../images/background.jpg");
     background-color: hsl(0,0%,90%);
 }
 body {
@@ -67,4 +73,7 @@ body {
     opacity: 1;
     box-shadow: 0 0 5px 1px black;
     cursor: pointer;
+}
+.navbar{
+    z-index: 9999;
 }
