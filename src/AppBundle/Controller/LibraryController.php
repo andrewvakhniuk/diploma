@@ -48,12 +48,18 @@ class LibraryController extends Controller
             $translator = $this->get('translator');
 
             if ($file !== null) {
+                
+//                $array = explode('.',  $file->getClientOriginalName());
+//                $ext = end($array);
+//                dump($ext);die;
 
                 $ext = $file->guessExtension();
+
+
                 if ($ext === null) {
                     $form->get('file')->addError(new FormError($translator->trans('file.can.not.be.empty')));
                 }
-                if ($ext !== null && strpos($ext, 'ppt') === false && strpos($ext, 'xls') === false && strpos($ext, 'doc') === false && strpos($ext, 'doc') === false) {
+                if ($ext !== null && strpos($ext, 'ppt') === false && strpos($ext, 'xls') === false && strpos($ext, 'doc') === false && strpos($ext, 'pdf') === false) {
                     $form->get('file')->addError(new FormError($translator->trans('supported.extensions') . ': ppt, xls, pdf, doc  !!!'));
                 }
 
