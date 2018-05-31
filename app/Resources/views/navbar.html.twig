@@ -12,14 +12,16 @@
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ page.name }}
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                 {% for subPage in  page.subPages %}
                     {% if subPage.active  and (is_granted('IS_AUTHENTICATED_FULLY') or subPage.public) %}
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item"
                                href="{{ path('page_content',{'id':subPage.id}) }}">{{ subPage.name }}</a>
-                        </div>
                     {% endif %}
                 {% endfor %}
+                </div>
+
             </li>
         {% endif %}
     {% endif %}

@@ -18,11 +18,13 @@ class DefaultController extends Controller
 
         $pages = $this->getDoctrine()->getManager()->getRepository('AppBundle:Page')->findBy(['main' => true]);
 
+//        dump($pages);die;
         return $this->render('navbar.html.twig', [
             'pages' => $pages
         ]);
     }
 
+    // for admin priviligues / to show or not to show menu depends on roles
     public function navbarConfigurations()
     {
 

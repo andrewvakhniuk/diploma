@@ -35,6 +35,7 @@ AppBundle\Entity\Page:
             targetEntity: Page
             mappedBy: mainPage
             cascade: ["persist","refresh"]
+            fetch: EAGER
     manyToOne:
         mainPage:
             targetEntity: Page
