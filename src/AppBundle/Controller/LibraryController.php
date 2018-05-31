@@ -48,7 +48,7 @@ class LibraryController extends Controller
             $translator = $this->get('translator');
 
             if ($file !== null) {
-                
+
 //                $array = explode('.',  $file->getClientOriginalName());
 //                $ext = end($array);
 //                dump($ext);die;
