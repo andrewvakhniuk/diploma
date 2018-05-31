@@ -8,9 +8,9 @@
 .navbar-inverse .navbar-nav>li>a {
     color: white;
 }
-.dropdown:hover>.dropdown-menu {
-    display: block;
-}
+/*.dropdown:hover>.dropdown-menu {*/
+    /*display: block;*/
+/*}*/
 /*.my-container {*/
     /*z-index: 0;*/
     /*!*display: flex;*!*/
