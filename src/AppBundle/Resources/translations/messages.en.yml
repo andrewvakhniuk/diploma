@@ -58,8 +58,9 @@ permission.to.add.new.library: Permission to add a new library
 permission.to.edit.libraries: Permission to edit libraries
 permission.to.check.users.and.control.their.permissions: Permission to check users and control their permissions
 save: Save
-
+user.permissions: User permissions
 supported.extentions: Supported file's extensions
+sub.page: Subpage
 
 
 
