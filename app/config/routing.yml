@@ -15,8 +15,8 @@ homepage_without_locale:
     methods:  [GET,POST]
     defaults: { _locale: '%locale%'}
 
-test:
-    path:     /test
-    defaults: { _controller: "AppBundle:Test:test" }
-    methods:  GET
+#test:
+#    path:     /test
+#    defaults: { _controller: "AppBundle:Test:test" }
+#    methods:  GET
 
