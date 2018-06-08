@@ -23,7 +23,7 @@ class Page
     {
         $this->active = true;
         $this->public = true;
-        $this->main=true;
+        $this->main = true;
         $this->subPages = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -101,6 +101,7 @@ class Page
     {
         return $this->active;
     }
+
     /**
      * @Gedmo\Translatable
      * @var string
@@ -131,11 +132,11 @@ class Page
     {
         return $this->content;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $subPages;
-
 
     /**
      * Add subPage
@@ -170,11 +171,13 @@ class Page
     {
         return $this->subPages;
     }
+
     public function __toString()
     {
         // TODO: Implement __toString() method.
         return $this->name;
     }
+
     /**
      * @var boolean
      */
@@ -233,6 +236,7 @@ class Page
     {
         return $this->mainPage;
     }
+
     /**
      * @var boolean
      */

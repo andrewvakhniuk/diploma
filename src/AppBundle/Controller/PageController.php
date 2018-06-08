@@ -58,13 +58,12 @@ class PageController extends Controller
     }
 
     /**
-     * Finds and displays a page entity.
-     *
+     * @param Page $page
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Page $page)
     {
         $this->denyAccessUnlessGranted('view', $page);
-
         $deleteForm = $this->createDeleteForm($page);
 
         return $this->render('page/show.html.twig', array(

@@ -37,10 +37,7 @@ class LibraryType extends AbstractTranslatableType
             if($library->getId()){
                 $event->getForm()->remove('file');
             }
-
         });
-
-
 
     }/**
      * {@inheritdoc}
@@ -61,6 +58,5 @@ class LibraryType extends AbstractTranslatableType
     {
         return 'appbundle_library';
     }
-
 
 }

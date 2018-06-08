@@ -113,6 +113,7 @@ class UserPermissionsType extends AbstractType
             }
 
         });
+
         $builder->addEventListener(FormEvents::POST_SUBMIT, function(FormEvent $event) use ($roles){
             $user =  $event->getData();
             $form = $event->getForm();
