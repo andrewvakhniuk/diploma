@@ -59,8 +59,8 @@ class LibraryController extends Controller
                 if ($ext === null) {
                     $form->get('file')->addError(new FormError($translator->trans('file.can.not.be.empty')));
                 }
-                if ($ext !== null && strpos($ext, 'ppt') === false && strpos($ext, 'xls') === false && strpos($ext, 'doc') === false && strpos($ext, 'pdf') === false) {
-                    $form->get('file')->addError(new FormError($translator->trans('supported.extensions') . ': ppt, xls, pdf, doc  !!!'));
+                if ($ext !== null && strpos($ext, 'ppt') === false && strpos($ext, 'xls') === false && strpos($ext, 'doc') === false && strpos($ext, 'pdf') === false && strpos($ext, 'mid') === false) {
+                    $form->get('file')->addError(new FormError($translator->trans('supported.extensions') . ': ppt, xls, pdf, doc, mid  !!!'));
                 }
 
                 if ($form->isValid()) {

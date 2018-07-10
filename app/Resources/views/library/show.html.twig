@@ -1,44 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block outerbody %}
 
-    <div style="position:absolute;width:100%;z-index: 99999;" id="presentation"></div>
 
-    {% if "ppt" in extension or "xls" in extension or "pdf" in extension or "doc" in extension %}
+        {% block outerbody %}
+            {% if "ppt" in extension or "xls" in extension or "pdf" in extension or "doc" in extension %}
 
-        <script>
-            function createIframe(){
-                $('#presentation iframe').remove();
-                var i = document.createElement("iframe");
-                i.src = "http://docs.google.com/gview?url={{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}&embedded=true";
-                i.scrolling = "auto";
-                i.frameborder = "0";
-                i.width = "100%";
-                i.height = ($(window).height() - 50 )+'px' ;
-                document.getElementById("presentation").appendChild(i);
-            }
-            createIframe();
+                <div style="position:absolute;width:100%;z-index: 99999;" id="presentation"></div>
 
-            function reloadIframe(){
-                setTimeout(function () {
-                    // printFrame();
-                    var x = $('#presentation iframe')[0];
-                    var y = (x.contentWindow || x.contentDocument);
-                    if (y.document)
-                        y = y.document;
-                    if ($(y.body).html() === '') {
-                        createIframe();
-                        reloadIframe();
+
+                <script>
+                    function createIframe() {
+                        $('#presentation iframe').remove();
+                        var i = document.createElement("iframe");
+                        i.src = "http://docs.google.com/gview?url={{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}&embedded=true";
+                        i.scrolling = "auto";
+                        i.frameborder = "0";
+                        i.width = "100%";
+                        i.height = ($(window).height() - 50) + 'px';
+                        document.getElementById("presentation").appendChild(i);
                     }
-                },2000);
-            }
-            $(document).ready(function () {
-                reloadIframe();
-            });
-        </script>
 
-    {% else %}
-        <h2>{{ 'unknown.extension.of.file'|trans }}</h2>
-        <h3>{{ 'supported.extensions'|trans }}: ppt | xls | pdf | doc </h3>
-    {% endif %}
+                    createIframe();
+
+                    function reloadIframe() {
+                        setTimeout(function () {
+                            // printFrame();
+                            var x = $('#presentation iframe')[0];
+                            var y = (x.contentWindow || x.contentDocument);
+                            if (y.document)
+                                y = y.document;
+                            if ($(y.body).html() === '') {
+                                createIframe();
+                                reloadIframe();
+                            }
+                        }, 2000);
+                    }
+
+                    $(document).ready(function () {
+                        reloadIframe();
+                    });
+                </script>
+
+            {% endif %}
+        {% endblock %}
+
+        {% block body %}
+            {% if "mid" in extension %}
+
+                <script>
+                    var path = '{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploadsfiles/'~library.getFile()) }}';
+                </script>
+                <h3 style="text-align: center;">{{ 'player'|trans }}</h3>
+                <br>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8 " style="
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding:20px;
+                margin:auto;
+                display: inline-flex;
+                justify-content: space-between;
+">
+                        <div>
+
+                            <button class="btn btn-primary btn-lg"
+                                    onClick="MIDIjs.play('{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}');">
+                                <i class="fa fa-play" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-danger btn-lg" href="#" onClick="MIDIjs.stop();">
+                                <i class="fa fa-pause" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <h3>{{ library.name }}</h3>
+                        <i class="fa fa-music" style="font-size: 50px;" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <br>
+                <hr>
+
+            {% endif %}
+        {% endblock %}
+
+
+{% block stylesheets %}
+    <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
 {% endblock %}
