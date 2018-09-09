@@ -49,6 +49,20 @@
                     height: 200
                 }, $(this).val());
             });
+            // validate translatable fields
+            $('body form').on('submit', function (e) {
+                var field = false;
+                $('.translatable').each(function () {
+                    if ($(this).val() === "") {
+                        e.preventDefault();
+
+                        field = $(this).parent().parent().parent().find('.col-form-label').html();
+                    }
+                });
+                if(field){
+                    alert(field+" {{ 'can.not.be.empty'|trans }}");
+                }
+            });
 
             // START style tabs language
             $('.nav-tabs li').each(function () {

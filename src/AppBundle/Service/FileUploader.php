@@ -29,7 +29,7 @@ class FileUploader
         }
 //        dump($file->guessExtension());die;
 
-        $fileName = $fileName.'.'.$file->guessExtension();
+        $fileName = $fileName.'.'.$file->getClientOriginalExtension();
 
         $file->move($this->targetDir, $fileName);
 

@@ -8,10 +8,10 @@
 
         <table class="table table-striped thead-dark ">
             <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ page.id }}</td>
-            </tr>
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ page.id }}</td>#}
+            {#</tr>#}
             <tr>
                 <th>{{ 'appellation'|trans }}</th>
                 <td>{{ page.name }}</td>
@@ -19,6 +19,10 @@
             <tr>
                 <th>{{ 'active'|trans }}</th>
                 <td>{% if page.active %}{{ 'yes'|trans }}{% else %}{{ 'no'|trans }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ 'public'|trans }}</th>
+                <td>{% if page.public %}{{ 'yes'|trans }}{% else %}{{ 'no'|trans }}{% endif %}</td>
             </tr>
 
             </tbody>

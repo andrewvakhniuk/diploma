@@ -36,7 +36,7 @@ library.creation: Library creation
 access.denied: Access Denied!
 mainpage: Homepage
 
-library.content: The library includes several music pieces in sets containing:- printed music notation (pdf).
+library.content: The library includes several music pieces in sets containing:- printed music notation .
 
 mainpage.content: This page is dedicated to project Removing barriers to functioning of people with disabilities in information society - design and implementation of computer system aimed at processing music information for blind people. carried out by Systems Research Institute of Polish Academy of Sciences between 2009-2012. The project was funded by The National Centre For Research and Development. Scientific publications, conference presentations and prototype music information processing program for blind people were published during project implementation.
 
@@ -65,5 +65,16 @@ profile: Profile
 
 player: Player
 
+choose.a.receiver: Choose a receiver !!!
+to.all: To all
+receivers: Receivers
+subject: Subject
+message: Message
+the.email.was.was.successfully.send: The email was successfully send!
+permissions.to.contact.users: Permission to contact users
+supported.extensions: Supported extensions
+can.not.be.empty: - field can not be empty!!!
 
-
+uk: Українська
+pl: Polski
+en: English

@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,6 +26,9 @@ class LibraryType extends AbstractTranslatableType
             ->add("name", TranslatableTextType::class,
                 [
                     'required'=>true,
+                    'attr'=>[
+                        'class'=>'translatable'
+                    ]
                 ]);
 
         $builder
@@ -36,6 +40,15 @@ class LibraryType extends AbstractTranslatableType
             $library = $event->getData();
             if($library->getId()){
                 $event->getForm()->remove('file');
+            }
+        });
+
+        $builder->get('name')->addEventListener(FormEvents::PRE_SUBMIT,function (FormEvent $event){
+            $data = $event->getData();
+            foreach ($data as $field){
+                if($field === ""){
+                    $event->getForm()->addError(new FormError("can.not.be.empty"));
+                }
             }
         });
 

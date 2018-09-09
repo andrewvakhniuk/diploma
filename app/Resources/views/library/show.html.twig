@@ -1,12 +1,9 @@
 {% extends 'base.html.twig' %}
 
-
-
         {% block outerbody %}
             {% if "ppt" in extension or "xls" in extension or "pdf" in extension or "doc" in extension %}
 
                 <div style="position:absolute;width:100%;z-index: 99999;" id="presentation"></div>
-
 
                 <script>
                     function createIframe() {
@@ -40,12 +37,24 @@
                         reloadIframe();
                     });
                 </script>
-
+            {% elseif "mp3" in extension or "wav"in extension  or "mp4"in extension  or "aac"in extension  or "webm"in extension  or "ogg"in extension  or "flac"in extension %}
+                <div style="position: absolute;width:100%;bottom:10px;top:15px;" id="music"></div>
+                <script>
+                    $('#music').jsRapAudio({
+                        src: '{{ asset('uploads/files/'~library.getFile()) }}',
+                        autoplay: false
+                    });
+                    $(document).ready(function () {
+                        $('.my-container,.bottom').css({display:'none'});
+                    })
+                </script>
             {% endif %}
         {% endblock %}
 
         {% block body %}
+           
             {% if "mid" in extension %}
+
 
                 <script>
                     var path = '{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploadsfiles/'~library.getFile()) }}';
@@ -85,4 +94,6 @@
 
 {% block stylesheets %}
     <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
+    <link rel="stylesheet" href="{{ asset('assets/sRapAudio/jsRapAudio.css') }}">
+    <script src="{{ asset('assets/sRapAudio/jsRapAudio.js') }}"></script>
 {% endblock %}

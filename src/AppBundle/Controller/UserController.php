@@ -73,16 +73,13 @@ class UserController extends Controller
         $form = $this->createForm('AppBundle\Form\UserPermissionsType', $user,['roles'=>$roles]);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
 
             $em->persist($user);
             $em->flush();
 
             return $this->redirectToRoute('user_show', array('id' => $user->getId()));
-
         }
 
         return $this->render('users/permissions.html.twig', array(

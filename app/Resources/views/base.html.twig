@@ -19,7 +19,7 @@
     {#<meta property="og:site_name" content="InPlay" />#}
     {# -- END openn graph#}
 
-
+    <meta name="viewport" content="initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ app.request.uriForPath('/assets/images/pagename.ico') }}"/>
 
 
@@ -39,6 +39,7 @@
 
     {% block stylesheets %}{% endblock %}
     {% block stylesheets_fos_user %}{% endblock %}
+    {% block styleprofile %}{% endblock %}
 
     {#base css#}
     <link href="{{ asset('assets/css/base.css') }}" rel="stylesheet">
@@ -75,6 +76,14 @@
 
                 {#--------- if logged in -----------#}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                {% if is_granted('ROLE_SEND_EMAIL') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contact_contact') }}">
+                            <span class="fa fa-envelope"> </span>
+                        </a>
+                    </li>
+                {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('fos_user_profile_show') }}">
                             <span class="fa fa-user"> {{ app.user.username }}</span>
@@ -131,9 +140,9 @@
     </div>
 
 </div>
-<nav class="navbar bottom navbar-dark bg-primary" style="height: 23px;line-height: 10px;box-shadow: 0 2px 2px 2px grey;top:-22px;">
+<nav class="navbar bottom navbar-dark bg-primary bottom-navbar" style="height: 23px;line-height: 10px;box-shadow: 0 2px 2px 2px grey;top:-22px;">
     <div class="container" >
-        <div class="navbar-text" style="text-align: center;" >Politechnika Warszawska 2018</div>
+        <div class="navbar-text" style="text-align: center;" >WUT 2018 - Andrii Vakhniuk</div>
     </div>
 </nav>
 {% block javascripts %}

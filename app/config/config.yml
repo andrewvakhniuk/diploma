@@ -17,7 +17,8 @@ parameters:
                            ROLE_ADD_PAGE,
                            ROLE_ADD_LIBRARY,
                            ROLE_EDIT_LIBRARY,
-                           ROLE_PERMISSION_PANEL
+                           ROLE_PERMISSION_PANEL,
+                           ROLE_SEND_EMAIL
                          ]
 framework:
     templating:
@@ -91,7 +92,7 @@ doctrine:
                 is_bundle: false
 
 stof_doctrine_extensions:
-    default_locale: %locale%
+    default_locale: '%locale%'
     translation_fallback: true
     persist_default_translation: true
     orm:

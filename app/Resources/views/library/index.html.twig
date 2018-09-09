@@ -24,7 +24,7 @@
                                     style="font-size: 40px;color:orangered;"    class="	fa fa-file-powerpoint-o"
                                 {% elseif  'pdf' in extension %}
                                     style="font-size: 40px;color:red;" class="fa fa-file-pdf-o"
-                                {% elseif  'mid' in extension %}
+                                {% else  %}
                                     style="font-size: 40px;color:black;" class="fa fa-music"
                                 {% endif %}
 
@@ -51,7 +51,7 @@
         <br>
         <hr>
         {% if is_granted('ROLE_ADD_LIBRARY') %}
-        <a class="btn btn-primary col-sm-3" href="{{ path('library_new') }}"><i style="margin-right: 10px;" class="fa fa-plus"></i> {{ 'add.library'|trans }}</a>
+        <a class="btn btn-primary " href="{{ path('library_new') }}"><i style="margin-right: 10px;" class="fa fa-plus"></i> {{ 'add.library'|trans }}</a>
         {% endif %}
     </ul>
 

@@ -6,6 +6,7 @@ use AppBundle\Entity\Library;
 use AppBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -42,25 +43,24 @@ class LibraryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            /**@var UploadedFile $file*/
+
             $file = $request->files->get('appbundle_library')['file'];
 
 
             $translator = $this->get('translator');
 
             if ($file !== null) {
+                $allowedTypes =['ppt','xls','doc','pptx','xlsx','docx','pdf','mid','wav','mp3','mpeg','mp4','aac','webm','ogg','flac'];
 
-//                $array = explode('.',  $file->getClientOriginalName());
-//                $ext = end($array);
-//                dump($ext);die;
+//                $ext = $file->guessExtension();
+                $extension = $file->getClientOriginalExtension();
 
-                $ext = $file->guessExtension();
-
-
-                if ($ext === null) {
+                if ($extension === null ) {
                     $form->get('file')->addError(new FormError($translator->trans('file.can.not.be.empty')));
                 }
-                if ($ext !== null && strpos($ext, 'ppt') === false && strpos($ext, 'xls') === false && strpos($ext, 'doc') === false && strpos($ext, 'pdf') === false && strpos($ext, 'mid') === false) {
-                    $form->get('file')->addError(new FormError($translator->trans('supported.extensions') . ': ppt, xls, pdf, doc, mid  !!!'));
+                if (!in_array($extension,$allowedTypes,true)) {
+                    $form->get('file')->addError(new FormError($translator->trans('supported.extensions')." : " .implode(", ",$allowedTypes). ' !!!'));
                 }
 
                 if ($form->isValid()) {

@@ -34,8 +34,8 @@ services:
         class: AppBundle\Form\PageType
         arguments: ["@sim_trans_form.mapper"]
         calls:
-            - [ setRequiredLocale, [%locale%] ]
-            - [ setLocales, [%locales%] ]
+            - [ setRequiredLocale, ['%locale%'] ]
+            - [ setLocales, ['%locales%'] ]
         tags:
             - { name: form.type }
 
@@ -43,8 +43,8 @@ services:
         class: AppBundle\Form\LibraryType
         arguments: ["@sim_trans_form.mapper"]
         calls:
-            - [ setRequiredLocale, [%locale%] ]
-            - [ setLocales, [%locales%] ]
+            - [ setRequiredLocale, ['%locale%'] ]
+            - [ setLocales, ['%locales%'] ]
         tags:
             - { name: form.type }
 
@@ -54,8 +54,8 @@ services:
         class: AppBundle\Form\SubPageType
         arguments: ["@sim_trans_form.mapper"]
         calls:
-            - [ setRequiredLocale, [%locale%] ]
-            - [ setLocales, [%locales%] ]
+            - [ setRequiredLocale, ['%locale%'] ]
+            - [ setLocales, ['%locales%'] ]
         tags:
             - { name: form.type }
 

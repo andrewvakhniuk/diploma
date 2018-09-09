@@ -13,14 +13,14 @@
 
 
 <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
-    <img style="width:25px;" src="{{ asset('assets/images/flags/'~app.request.locale~'.svg') }}"></img>
+    <img style="width:25px;" src="{{ asset('assets/images/flags/'~app.request.locale~'.svg') }}"> {{ app.request.locale|trans }}</img>
 </a>
 <ul class="dropdown-menu list-unstyled" aria-labelledby="navbarDropdown">
     {% for locale in app_locales|split('|') if locale != app.request.locale %}
 
         <li style="margin-left:25px">
             <a href="{{ path(route, params|merge({ _locale: locale })) }}">
-                <img style="width:25px;border: solid grey thin;" src="{{ asset('assets/images/flags/'~locale~'.svg') }}"></img>
+                <img style="width:25px;border: solid grey thin;" src="{{ asset('assets/images/flags/'~locale~'.svg') }}"> {{ locale|trans }}</img>
 
             </a>
         </li>

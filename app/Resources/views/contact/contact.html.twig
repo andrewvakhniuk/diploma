@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {#<link rel="stylesheet" href="{{  asset('assets/css/fosuser.css')  }}" >#}
+    {#-- Start select2 -- #}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <link href="{{ asset('assets/select2-bootstrap4/dist/select2-bootstrap4.min.css') }}" rel="stylesheet">
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/{{ app.request.locale }}.js"></script>
+    {#-- End Select2 --#}
+
+    <style>
+        .my-container {
+            background-color: transparent !important;
+            box-shadow: 0 0 0 0 transparent !important;
+        }
+
+        .container {
+            color: white;
+        }
+
+        .login-container {
+            position: absolute;
+            width: 100% !important;
+            background-color: black;
+            margin-top: -35px;
+            padding-bottom: 40px;
+            border-radius: 2px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            height: 100%;
+            opacity: 0.7;
+        }
+        .row{
+            padding-left:25px;
+            /*padding-right: 10px;*/
+        }
+    </style>
+    <style>
+        body {
+            background-color: hsl(0, 0%, 95%);
+        }
+
+        button, input, textarea {
+            -webkit-box-shadow: 0 0px 15px -5px white;
+            -moz-box-shadow: 0 0px 15px -5px white;
+            box-shadow: 0 0px 15px -5px white;
+        }
+
+        input:hover, textarea:hover, button:hover {
+            -webkit-box-shadow: 0 0px 15px -2px white;
+            -moz-box-shadow: 0 0px 15px -2px white;
+            box-shadow: 0 0px 15px -2px white;
+        }
+
+        .btn-circle {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            font-size: 24px;
+            line-height: 1.33;
+            border-radius: 35px;
+        }
+        .check-box input{
+            width:38px;
+            height:38px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="login-container register">
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-sm-10" style="margin:auto;">
+            <h4 style="text-align: center;font-size:40px;">
+                <i class="fa fa-envelope"></i>
+            </h4>
+
+            {{ form_start(form) }}
+            <div  class="form-row">
+                <div  style="margin-right: 25px;" class="col-sm-1 check-box">
+                    <p  style="position: absolute">{{ 'to.all'|trans }}</p>
+                    <div style="margin-top:27px; ">
+                        {{ form_row(form.all) }}
+
+                    </div>
+                </div>
+                <div class="col">
+                    {{ form_row(form.receivers) }}
+                </div>
+            </div>
+            {{ form_widget(form) }}
+            <div class="row">
+                <button id="submit-button" style="margin:auto;" class="btn btn-primary  btn-circle">
+                    <i class="fa fa-paper-plane "></i>
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $.fn.select2.defaults.set("theme", "bootstrap4");
+            var locale = "{{ app.request.locale }}";
+
+            $receivers = $('#contact_receivers').select2({
+                locale: locale,
+                width: 'auto',
+                allowClear: true
+            });
+            $('#contact_all').on('change',function(){
+               if($(this).prop('checked')){
+                   $receivers.val('').trigger('change');
+                   $receivers.prop('disabled',true);
+               } else{
+                   $receivers.prop('disabled',false);
+               }
+            });
+        });
+
+        $('body').find('form').submit(function(event){
+            if($('#contact_all').prop('checked') === false && !$('#contact_receivers').val()){
+                event.preventDefault();
+                alert('{{ 'choose.a.receiver'|trans }}');
+            }
+        });
+    </script>
+{% endblock %}

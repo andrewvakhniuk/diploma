@@ -4,8 +4,10 @@
     <h1>{{ 'library.creation'|trans }}</h1>
 
     {{ form_start(form) }}
+    <div class="form-group has-error">
+        {{ form_row(form.name, {label: "appellation"|trans}) }}
+    </div>
 
-    {{ form_row(form.name, {label: "appellation"|trans}) }}
     <br>
     {{ form_row(form.file) }}
 
@@ -21,9 +23,27 @@
 
 {% block javascripts %}
     <script>
+
         $(document).ready(function () {
 
-            // START style tabs language
+            // validate translatable fields
+            $('body form').on('submit', function (e) {
+                var field = false;
+                $('.translatable').each(function () {
+                    if ($(this).val() === "") {
+                        e.preventDefault();
+
+                        field = $(this).parent().parent().parent().find('.col-form-label').html();
+                    }
+                });
+                if(field){
+                    alert(field+" {{ 'can.not.be.empty'|trans }}");
+                }
+            });
+
+
+
+            // START style tabs language for translatable fields
             $('.nav-tabs li').each(function () {
                 $(this).addClass('nav-item');
                 if ($(this).hasClass('active')) {

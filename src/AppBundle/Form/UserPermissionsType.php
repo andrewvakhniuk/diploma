@@ -93,6 +93,11 @@ class UserPermissionsType extends AbstractType
                 'mapped'=>false,
                 'required' => false,
             ])
+            ->add('ROLE_SEND_EMAIL',CheckboxType::class,[
+                'label'=> 'permissions.to.contact.users',
+                'mapped'=>false,
+                'required' => false,
+            ])
             ->add('ROLE_PERMISSION_PANEL',CheckboxType::class,[
                 'label'=> 'permission.to.check.users.and.control.their.permissions',
                 'mapped'=>false,
@@ -111,7 +116,6 @@ class UserPermissionsType extends AbstractType
                     $form->get($role)->setData(false);
                 }
             }
-
         });
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function(FormEvent $event) use ($roles){

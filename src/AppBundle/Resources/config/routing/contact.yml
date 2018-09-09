@@ -1,0 +1,4 @@
+contact_contact:
+    path:     /contact
+    defaults: { _controller: "AppBundle:Contact:contact" }
+    methods:  [GET, POST]

@@ -13,15 +13,30 @@
 
 {% endblock %}
 {% block stylesheets %}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-{% endblock %}
+    {#-- Start select2 -- #}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <link href="{{ asset('assets/select2-bootstrap4/dist/select2-bootstrap4.min.css') }}" rel="stylesheet">
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/{{ app.request.locale }}.js"></script>
+    {#-- End Select2 --#}
+
+{%  endblock %}
 {% block javascripts %}
     <script>
         $(document).ready(function(){
-
-            $('#user_permissions_availablePages').select2();
-            $('#user_permissions_editablePages').select2();
+            $.fn.select2.defaults.set("theme", "bootstrap4");
+            var locale = "{{ app.request.locale }}";
+            $('#user_permissions_availablePages').select2({
+                locale: locale,
+                width: 'auto'
+            });
+            $('#user_permissions_editablePages').select2({
+                locale: locale,
+                width: 'auto'
+            });
 
         });
     </script>

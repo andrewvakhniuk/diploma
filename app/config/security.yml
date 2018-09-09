@@ -10,7 +10,8 @@ security:
                 ROLE_ADD_PAGE,
                 ROLE_ADD_LIBRARY,
                 ROLE_EDIT_LIBRARY,
-                ROLE_PERMISSION_PANEL
+                ROLE_PERMISSION_PANEL,
+                ROLE_SEND_EMAIL
               ]
 
 
@@ -63,5 +64,7 @@ security:
         - { path: ^/(%app_locales%)/library/[0-9]+/edit, roles: ROLE_EDIT_LIBRARY }
         - { path: ^/(%app_locales%)/library/[0-9]+/delete, roles: ROLE_EDIT_LIBRARY }
         - { path: ^/(%app_locales%)/user/, roles: ROLE_PERMISSION_PANEL }
+        - { path: ^/(%app_locales%)/contact/, roles: ROLE_SEND_EMAIL }
         - { path: ^/(%app_locales%)/library/, roles: IS_AUTHENTICATED_FULLY }
+
 #        - { path: ^/(%app_locales%)/page/, roles: IS_AUTHENTICATED_FULLY }

@@ -28,12 +28,15 @@ class PageType extends AbstractTranslatableType
         // you can add the translatable fields
         $this->createTranslatableMapper($builder, $options)
             ->add("name", TranslatableTextType::class,[
-                'label'=>'appellation'
+                'label'=>'appellation',
+                'attr'=>[
+                    'class'=>'translatable',
+                ]
             ])
             ->add("content", TranslatableTextType::class,[
                 'label'=>'content',
                 'attr'=>[
-                    'class'=>'text-editor'
+                    'class'=>'text-editor translatable',
                 ]
             ])
         ;

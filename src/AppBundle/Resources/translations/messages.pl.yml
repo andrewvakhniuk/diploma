@@ -37,7 +37,7 @@ library.creation: Tworzenie biblioteki
 access.denied: Odmowa dostępu
 mainpage: Strona główna
 
-library.content: Biblioteka zawiera przykładowe utwory muzyczne w zestawach:- drukowana notacja muzyczna (pdf).
+library.content: Biblioteka zawiera przykładowe utwory muzyczne w zestawach:- drukowana notacja muzyczna .
 mainpage.content: Niniejsza strona jest poświęcona projektowi Usuwanie barier funkcjonowania osób niepełnosprawnych w społeczeństwie informacyjnym. Braille Score - projekt i wykonanie komputerowego systemu przetwarzania informacji muzycznej dla osób niewidomych realizowanemu w Instytucie Badań Systemowych Polskiej Akademii Nauk w latach 2009-2012. Projekt był finansowany przez Narodowe Centrum Badań i Rozwoju. W ramach projektu zostały przygotowane publikacje naukowe, prezentacje konferencyjne oraz prototypowy program przetwarzania informacji muzycznych przeznaczony dla osób niewidomych.
 
 
@@ -64,3 +64,20 @@ save: Zapisać
 supported.extentions: Obsługiwane rozszerzenia plików
 sub.page: Podstrona
 profile: Profil
+
+player: Odtwarzacz
+choose.a.receiver: Wybierz odbiornika !!!
+to.all: Wszystkim
+receivers: Odbiorcy
+subject: Przedmiot
+message: Wiadomość
+the.email.was.was.successfully.send: E-mail został pomyślnie wysłany!
+permissions.to.contact.users: Zezwolenie na kontaktowanie się z użytkownikami
+
+can.not.be.empty: - pole nie może być puste !!!
+
+uk: Українська
+pl: Polski
+en: English
+
+supported.extensions: Obsługiwane rozszerzenia

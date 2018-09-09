@@ -46,3 +46,8 @@ app_bundle_library:
 app_bundle_user:
     resource: "@AppBundle/Resources/config/routing/user.yml"
     prefix: /user
+
+
+app_bundle_contact:
+    resource: "@AppBundle/Resources/config/routing/contact.yml"
+    prefix: /contact
