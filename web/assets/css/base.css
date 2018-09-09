@@ -36,6 +36,12 @@
     z-index: 1;
 
 }
+@media screen and (max-width: 700px){
+    .my-container{
+        padding-left:0px;
+        padding-right: 0px;
+    }
+}
 body{
     background-image: url("../images/background.jpg");
     background-color: hsl(0,0%,90%);
