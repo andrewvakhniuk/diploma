@@ -71,16 +71,16 @@ class DefaultController extends Controller
         /**@var  UploadedFile $file */
 
         $file = $request->files->get('file');
-//        $uploader = $this->get('app.service.file_uploader');
-//        /**@var $uploader \AppBundle\Service\FileUploader*/
-//
-//        $name = $uploader->upload($file);
-////        $fullPath = realpath($uploader->getTargetDir()).$name;
-//        $fullPath = 'http://braillescore.inplay.com.ua/uploads/files/'.$name;
+        $uploader = $this->get('app.service.file_uploader');
+        /**@var $uploader \AppBundle\Service\FileUploader*/
+
+        $name = $uploader->upload($file);
+//        $fullPath = realpath($uploader->getTargetDir()).$name;
+        $fullPath = 'http://braillescore.inplay.com.ua/uploads/files/'.$name;
 //        dump($fullPath);die;
         $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=1';
         $header = array('Content-Type: multipart/form-data');
-        $fields = array('uploaded_file' => '@' .  $_FILES['file']['tmp_name'][0]);
+        $fields = array('uploaded_file' => '@' . $fullPath);
 //        $fields['charEncoding']='pl';
         $fields['MAX_FILE_SIZE'] = '10000000';
 
