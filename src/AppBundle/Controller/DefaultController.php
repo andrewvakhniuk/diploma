@@ -105,19 +105,19 @@ class DefaultController extends Controller
         curl_close($resource);
         $response =  new Response();
 
-        $file_array = explode("\n\r", $file, 2);
-        $header_array = explode("\n", $file_array[0]);
+        $file_array = explode("\n\r", $file, 3);
+        $header_array = explode("\n", $file_array[1]);
         foreach($header_array as $header_value) {
             $header_pieces = explode(':', $header_value);
             if(count($header_pieces) == 2) {
                 $headers[$header_pieces[0]] = trim($header_pieces[1]);
             }
         }
-        $response->headers->set('Content-type: ' , $headers['Content-Type']);
-        $response->headers->set('Content-Disposition: ' , $headers['Content-Disposition']);
-        $response->headers->set('Content-Description: ' , $headers['Content-Description']);
+        $response->headers->set('Content-type' , $headers['Content-Type']);
+        $response->headers->set('Content-Disposition' , $headers['Content-Disposition']);
+        $response->headers->set('Content-Description' , $headers['Content-Description']);
 
-        $response->setContent($file_array[1]);
+        $response->setContent($file_array[2]);
 
         return $response;
     }
