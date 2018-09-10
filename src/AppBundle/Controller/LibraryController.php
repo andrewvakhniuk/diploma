@@ -51,7 +51,7 @@ class LibraryController extends Controller
             $translator = $this->get('translator');
 
             if ($file !== null) {
-                $allowedTypes =['ppt','xls','doc','pptx','xlsx','docx','pdf','mid','wav','mp3','mpeg','mp4','aac','webm','ogg','flac'];
+                $allowedTypes =['ppt','xls','doc','pptx','xlsx','docx','pdf','txt','xml','bs','mid','wav','mp3','mpeg','mp4','aac','webm','ogg','flac'];
 
 //                $ext = $file->guessExtension();
                 $extension = $file->getClientOriginalExtension();
