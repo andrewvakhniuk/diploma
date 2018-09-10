@@ -76,3 +76,9 @@ services:
         arguments: ["@doctrine.orm.entity_manager","@mailer"]
         tags:
             - { name: kernel.event_subscriber }
+
+#    swiftmailer.command.spool_send:
+#        public: true
+#        class: Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand
+#        calls:
+#            - [ setContainer, ["@service_container"] ]

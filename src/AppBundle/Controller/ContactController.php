@@ -10,6 +10,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -37,6 +39,8 @@ class ContactController extends Controller
                 $message->setTo($receiver->getEmail());
                 $mailer->send($message);
             }
+//            $this->get('swiftmailer.command.spool_send')->run(new ArgvInput(array()), new ConsoleOutput());
+
 
             $this->addFlash('success',$this->get('translator')->trans('the.email.was.was.successfully.send'));
             return $this->redirectToRoute('contact_contact');
