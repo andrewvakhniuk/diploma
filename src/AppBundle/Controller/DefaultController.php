@@ -74,15 +74,23 @@ class DefaultController extends Controller
 
         $file = $request->files->get('file');
 
+        $params = $request->request->all();
+
 //        dump($file->getClientOriginalName());die;
-        $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=1';
+        $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=';
         $header = array('Content-Type: multipart/form-data');
         $fields = array('uploaded_file' =>  curl_file_create($file->getRealPath()));
 
-//        $fields['charEncoding']='pl';
+        if(isset($params['encodingChar'])){
+            $fields['charEncoding']=$params['encodingChar'];
+            $url.='1';
+        }else{
+            $url.='2';
+        }
 
         $fields['MAX_FILE_SIZE'] = '10000000';
 
+        //send file to brailleScore
 
         $resource = curl_init();
 
