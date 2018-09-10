@@ -105,8 +105,8 @@ class DefaultController extends Controller
         curl_close($resource);
         $response =  new Response();
 
-        $file_array = explode("\n\r", $file, 3);
-        $header_array = explode("\n", $file_array[1]);
+        $file_array = explode("\n\r", $file, 2);
+        $header_array = explode("\n", $file_array[0]);
         foreach($header_array as $header_value) {
             $header_pieces = explode(':', $header_value);
             if(count($header_pieces) == 2) {
@@ -117,7 +117,7 @@ class DefaultController extends Controller
         $response->headers->set('Content-Disposition: ' , $headers['Content-Disposition']);
         $response->headers->set('Content-Description: ' , $headers['Content-Description']);
 
-        $response->setContent($file_array[2]);
+        $response->setContent($file_array[1]);
 
         return $response;
     }
