@@ -45,19 +45,27 @@
                         autoplay: false
                     });
                     $(document).ready(function () {
-                        $('.my-container,.bottom').css({display:'none'});
+                        $('.my-container,.bottom').css({display: 'none'});
                     })
+                </script>
+
+                {#<script>#}
+                    {#window.location.replace("{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}");#}
+                {#</script>#}
+            {% elseif 'xml' in extension or 'bs' in extension or 'txt' in extension %}
+                <script>
+                    window.location.replace("{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}");
                 </script>
             {% endif %}
         {% endblock %}
 
         {% block body %}
-           
+
             {% if "mid" in extension %}
 
 
                 <script>
-                    var path = '{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploadsfiles/'~library.getFile()) }}';
+                    var path = '{{ app.request.getSchemeAndHttpHost() }}{{ asset('uploads/files/'~library.getFile()) }}';
                 </script>
                 <h3 style="text-align: center;">{{ 'player'|trans }}</h3>
                 <br>

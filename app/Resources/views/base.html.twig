@@ -68,6 +68,12 @@
                 </li>
                 {#embedded controller navbar.html.twig#}
                 {{ render(controller('AppBundle\\Controller\\DefaultController::navbar')) }}
+
+                {#{% if is_granted('ROLE_ACCESS_TO_SERVICES') %}#}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ path('default_service') }}">{{ 'services'|trans }} <span class="sr-only"></span></a>
+                    </li>
+                {#{% endif %}#}
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ path('library_index') }}">{{ 'library'|trans }} <span class="sr-only"></span></a>
                 </li>

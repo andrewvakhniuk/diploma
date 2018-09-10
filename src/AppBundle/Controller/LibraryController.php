@@ -96,7 +96,7 @@ class LibraryController extends Controller
 
         return $this->render('library/show.html.twig', array(
             'library' => $library,
-            'extension'=> $extension
+            'extension'=> $extension,
         ));
     }
 

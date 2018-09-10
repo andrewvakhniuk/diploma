@@ -37,7 +37,7 @@ library.creation: Tworzenie biblioteki
 access.denied: Odmowa dostępu
 mainpage: Strona główna
 
-library.content: Biblioteka zawiera przykładowe utwory muzyczne w zestawach:- drukowana notacja muzyczna .
+library.content: Biblioteka zawiera przykładowe utwory muzyczne .
 mainpage.content: Niniejsza strona jest poświęcona projektowi Usuwanie barier funkcjonowania osób niepełnosprawnych w społeczeństwie informacyjnym. Braille Score - projekt i wykonanie komputerowego systemu przetwarzania informacji muzycznej dla osób niewidomych realizowanemu w Instytucie Badań Systemowych Polskiej Akademii Nauk w latach 2009-2012. Projekt był finansowany przez Narodowe Centrum Badań i Rozwoju. W ramach projektu zostały przygotowane publikacje naukowe, prezentacje konferencyjne oraz prototypowy program przetwarzania informacji muzycznych przeznaczony dla osób niewidomych.
 
 
@@ -81,3 +81,15 @@ pl: Polski
 en: English
 
 supported.extensions: Obsługiwane rozszerzenia
+
+permission.to.use.services: Zezwolenie na korzystanie z usług
+services: Usługi
+
+conversion: Konwersje
+service.description: Poniżej dostępna jest usługa konwersji miedzy formatami Music XML i Braille Music (format w postaci jednego długiego systemu)
+conversion.from.xml.to.braillescore: Konwersja z formatu Music XML do formatu Braille Music
+choose.xml.file: Wybierz plik w formacie Music XML do konwersji
+type.of.coding: Sposób kodowania znaków
+process.file: Konwertuj plik
+conversion.from.braillescore.to.xml: Konwersja z formatu Braille Music do formatu Music XML
+choose.braillescore.file: CWybierz plik w formacie Braille Music do konwersji (.txt)

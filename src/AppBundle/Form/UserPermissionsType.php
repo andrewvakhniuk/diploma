@@ -98,6 +98,11 @@ class UserPermissionsType extends AbstractType
                 'mapped'=>false,
                 'required' => false,
             ])
+            ->add('ROLE_ACCESS_TO_SERVICES',CheckboxType::class,[
+                'label'=> 'permission.to.use.services',
+                'mapped'=>false,
+                'required' => false,
+            ])
             ->add('ROLE_PERMISSION_PANEL',CheckboxType::class,[
                 'label'=> 'permission.to.check.users.and.control.their.permissions',
                 'mapped'=>false,

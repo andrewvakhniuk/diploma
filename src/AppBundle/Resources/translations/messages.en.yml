@@ -36,7 +36,7 @@ library.creation: Library creation
 access.denied: Access Denied!
 mainpage: Homepage
 
-library.content: The library includes several music pieces in sets containing:- printed music notation .
+library.content: The library includes several music pieces .
 
 mainpage.content: This page is dedicated to project Removing barriers to functioning of people with disabilities in information society - design and implementation of computer system aimed at processing music information for blind people. carried out by Systems Research Institute of Polish Academy of Sciences between 2009-2012. The project was funded by The National Centre For Research and Development. Scientific publications, conference presentations and prototype music information processing program for blind people were published during project implementation.
 
@@ -78,3 +78,15 @@ can.not.be.empty: - field can not be empty!!!
 uk: Українська
 pl: Polski
 en: English
+
+permission.to.use.services: Permission to use services
+services: Services
+
+conversion: Conversions
+service.description: Conversion service allowes You to convert files between Music XML and Braille Music (one system format).
+conversion.from.xml.to.braillescore: Conversion from Music XML to Braille Music
+choose.xml.file: Choose Music XML file to perform conversion
+type.of.coding: Character encoding
+process.file: Convert file
+conversion.from.braillescore.to.xml: Conversion from Braille Music to Music XML
+choose.braillescore.file: Choose Braille Music file to perform conversion (.txt)

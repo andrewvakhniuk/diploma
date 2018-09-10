@@ -18,7 +18,8 @@ parameters:
                            ROLE_ADD_LIBRARY,
                            ROLE_EDIT_LIBRARY,
                            ROLE_PERMISSION_PANEL,
-                           ROLE_SEND_EMAIL
+                           ROLE_SEND_EMAIL,
+                           ROLE_ACCESS_TO_SERVICES
                          ]
 framework:
     templating:

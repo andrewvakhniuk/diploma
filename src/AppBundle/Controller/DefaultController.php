@@ -71,59 +71,65 @@ class DefaultController extends Controller
     public function serviceConvertAction(Request $request){
         /**@var  UploadedFile $file */
 
-
-        $file = $request->files->get('file');
-
         $params = $request->request->all();
-
-//        dump($file->getClientOriginalName());die;
-        $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=';
-        $header = array('Content-Type: multipart/form-data');
-        $fields = array('uploaded_file' =>  curl_file_create($file->getRealPath()));
-
-        if(isset($params['encodingChar'])){
-            $fields['charEncoding']=$params['encodingChar'];
-            $url.='1';
-        }else{
-            $url.='2';
+        if (!isset($params['_csrf_token'])||!$this->isCsrfTokenValid('secret', $params['_csrf_token'])) {
+            throw $this->createNotFoundException('Not Found');
         }
 
-        $fields['MAX_FILE_SIZE'] = '10000000';
+        try {
+            $file = $request->files->get('file');
 
-        //send file to brailleScore
+            $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=';
+            $header = array('Content-Type: multipart/form-data');
+            $fields = array('uploaded_file' => curl_file_create($file->getRealPath()));
 
-        $resource = curl_init();
-
-        curl_setopt($resource, CURLOPT_URL, $url);
-        curl_setopt($resource, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($resource, CURLOPT_POST, 1);
-        curl_setopt($resource, CURLOPT_POSTFIELDS, $fields);
-
-        curl_setopt($resource, CURLOPT_HEADER, 1);
-        curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($resource, CURLOPT_BINARYTRANSFER, 1);
-
-        $file = curl_exec($resource);
-
-        curl_close($resource);
-        $response =  new Response();
-
-        $file_array = explode("\n\r", $file, 3);
-        $header_array = explode("\n", $file_array[1]);
-        foreach($header_array as $header_value) {
-            $header_pieces = explode(':', $header_value);
-            if(count($header_pieces) == 2) {
-                $headers[$header_pieces[0]] = trim($header_pieces[1]);
+            if (isset($params['encodingChar'])) {
+                $fields['charEncoding'] = $params['encodingChar'];
+                $url .= '1';
+            } else {
+                $url .= '2';
             }
+
+            $fields['MAX_FILE_SIZE'] = '10000000';
+
+            //send file to brailleScore
+
+            $resource = curl_init();
+
+            curl_setopt($resource, CURLOPT_URL, $url);
+            curl_setopt($resource, CURLOPT_HTTPHEADER, $header);
+            curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($resource, CURLOPT_POST, 1);
+            curl_setopt($resource, CURLOPT_POSTFIELDS, $fields);
+
+            curl_setopt($resource, CURLOPT_HEADER, 1);
+            curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($resource, CURLOPT_BINARYTRANSFER, 1);
+
+            $file = curl_exec($resource);
+
+            curl_close($resource);
+            $response = new Response();
+
+            $file_array = explode("\n\r", $file, 3);
+            $header_array = explode("\n", $file_array[1]);
+            foreach ($header_array as $header_value) {
+                $header_pieces = explode(':', $header_value);
+                if (count($header_pieces) == 2) {
+                    $headers[$header_pieces[0]] = trim($header_pieces[1]);
+                }
+            }
+
+            $response->headers->set('Content-type', $headers['Content-Type']);
+            $response->headers->set('Content-Disposition', $headers['Content-Disposition']);
+            $response->headers->set('Content-Description', $headers['Content-Description']);
+
+            $response->setContent($file_array[2]);
+
+        }catch (\Exception $exception){
+            $this->addFlash('danger',$this->get('translator')->trans('invalid.file'));
+            return $this->redirectToRoute('default_service');
         }
-
-        $response->headers->set('Content-type' , $headers['Content-Type']);
-        $response->headers->set('Content-Disposition' , $headers['Content-Disposition']);
-        $response->headers->set('Content-Description' , $headers['Content-Description']);
-
-        $response->setContent($file_array[2]);
-
         return $response;
     }
 }

@@ -33,8 +33,9 @@
         </div>
         <br>
         <div class="row justify-content-center">
-            <button  class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
+            <button class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
         </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('secret') }}">
     </form>
 
     <br>
@@ -54,10 +55,12 @@
                 <input accept=".txt" required class="form-control" name="file" type="file">
             </div>
         </div>
+
         <br>
         <div class="row justify-content-center">
-            <button  class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
+            <button class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
         </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('secret') }}">
     </form>
 
 
