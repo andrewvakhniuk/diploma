@@ -79,36 +79,34 @@
 
 {% endblock %}
 
-{#{% block javascripts %}#}
-{#<script>#}
-    {#$("body form").submit(function(e) {#}
-        {#e.preventDefault();#}
-        {#var formData = new FormData(this);#}
-        {#console.log(formData);#}
-        {#var proxy = 'https://cors-anywhere.herokuapp.com/';#}
-        {#$.ajax({#}
-            {#enctype: 'multipart/form-data',#}
-            {#url: proxy + $(this).attr("action"),#}
-            {#type: 'POST',#}
-            {#data: formData,#}
-            {#dataType: 'binary',#}
-            {#// async:false,#}
-            {#crossDomain: true,#}
-            {#success: function (data) {#}
-                {#console.log(data);#}
-                {#var a = document.createElement('a');#}
-                {#var url = window.URL.createObjectURL(data);#}
-                {#a.href = url;#}
-                {#a.download = 'myfile.pdf';#}
-                {#a.click();#}
-                {#window.URL.revokeObjectURL(url);#}
-            {#},#}
-            {#cache: false,#}
-            {#contentType: false,#}
-            {#processData: false,#}
-            {#// timeout: 600000,#}
+{% block javascripts %}
+<script>
+    $("body form").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        // console.log(formData);
+        $.ajax({
+            enctype: 'multipart/form-data',
+            url:  $(this).attr("action"),
+            type: 'POST',
+            data: formData,
+            dataType: 'binary',
+            success: function (data) {
 
-        {#});#}
-    {#});#}
-{#</script>#}
-{#{% endblock %}#}
+                console.log(data);
+                var a = document.createElement('a');
+                var url = window.URL.createObjectURL(data);
+                a.href = url;
+                // a.download = 'myfile.pdf';
+                a.click();
+                window.URL.revokeObjectURL(url);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+            // timeout: 600000,
+
+        });
+    });
+</script>
+{% endblock %}

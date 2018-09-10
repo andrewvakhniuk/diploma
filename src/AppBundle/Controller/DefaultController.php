@@ -71,20 +71,16 @@ class DefaultController extends Controller
     public function serviceConvertAction(Request $request){
         /**@var  UploadedFile $file */
 
-        $file = $request->files->get('file');
-//        $uploader = $this->get('app.service.file_uploader');
-        /**@var $uploader \AppBundle\Service\FileUploader*/
-//
-//        $name = $uploader->upload($file);
-//        $fullPath = realpath($uploader->getTargetDir()).$name;
-//        $fullPath = 'http://braillescore.inplay.com.ua/uploads/files/'.$name;
-//        dump($fullPath);die;
 
-//        dump(curl_file_create($file->getRealPath()));die;
+        $file = $request->files->get('file');
+
+//        dump($file->getClientOriginalName());die;
         $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=1';
         $header = array('Content-Type: multipart/form-data');
         $fields = array('uploaded_file' =>  curl_file_create($file->getRealPath()));
+
 //        $fields['charEncoding']='pl';
+
         $fields['MAX_FILE_SIZE'] = '10000000';
 
 
