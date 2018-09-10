@@ -72,7 +72,7 @@ class DefaultController extends Controller
 //        dump($file->getRealPath());die;
         $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=2';
         $header = array('Content-Type: multipart/form-data');
-        $fields = array('uploaded_file' => '@' . $file->getRealPath());
+        $fields = array('uploaded_file' => '@' . $_FILES['file']['tmp_name'][0]);
         $fields['charEncoding']='pl';
         $fields['MAX_FILE_SIZE'] = 10000000;
 
