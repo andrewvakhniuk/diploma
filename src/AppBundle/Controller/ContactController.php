@@ -27,10 +27,11 @@ class ContactController extends Controller
                 ->setFrom('vah.a.val@gmail.com')
                 ->setBody($form->get('message')->getData(),'text/html');
 
+//            dump($form->get('all')->getData());die;
             if($form->get('all')->getData()){
                 $receivers = $this->getDoctrine()->getManager()->getRepository('AppBundle:User')->findAll();
             }else{
-                $receivers = $form->get('users')->getData();
+                $receivers = $form->get('receivers')->getData();
             }
             foreach ($receivers as $receiver){
                 $message->setTo($receiver->getEmail());
