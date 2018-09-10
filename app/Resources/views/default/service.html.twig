@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3 style="text-align: center;">{{ 'conversion'|trans }}</h3>
+    <br>
+    <p>
+        {{ 'service.description'|trans }}
+    </p>
+    <br>
+    <hr>
+    <h6 style="text-align: center;">
+        {{ 'conversion.from.xml.to.braillescore'|trans }}
+    </h6>
+
+    <br>
+
+    <form action="http://braillescore.ibspan.waw.pl/uploader.php?direction=2" enctype="multipart/form-data"
+          method="POST">
+        <input name="MAX_FILE_SIZE" type="hidden" value="10000000">
+        <div class="row justify-content-center">
+            <div class="col-sm-7">
+                <label for="uploaded_file">{{ 'choose.xml.file'|trans }}</label>
+                <input required class="form-control" accept=".xml" name="uploaded_file" type="file">
+            </div>
+
+            <div class="col col-sm-4">
+                <label for="charEncoding"> {{ 'type.of.coding'|trans }}</label>
+
+                <select class="form-control" name="charEncoding">
+                    <option value="pl">PL</option>
+                    <option value="us">US</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <button  class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
+        </div>
+    </form>
+
+    <br>
+    <hr>
+
+    <h6 style="text-align: center;">
+        {{ 'conversion.from.braillescore.to.xml'|trans }}
+    </h6>
+    <br>
+
+    <form action="http://braillescore.ibspan.waw.pl/uploader.php?direction=1" enctype="multipart/form-data"
+          method="POST">
+        <input name="MAX_FILE_SIZE" type="hidden" value="10000000">
+        <div class="row justify-content-center">
+            <div class="col-sm-7">
+                <label for="uploaded_file">{{ 'choose.braillescore.file'|trans }}</label>
+                <input accept=".txt" required class="form-control" name="uploaded_file" type="file">
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <button  class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
+        </div>
+    </form>
+
+    <form action="service/convert" enctype="multipart/form-data"
+          method="POST">
+        <input name="MAX_FILE_SIZE" type="hidden" value="10000000">
+        <div class="row justify-content-center">
+            <div class="col-sm-7">
+                <label for="file">{{ 'choose.braillescore.file'|trans }}</label>
+                <input accept=".txt" required class="form-control" name="file" type="file">
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <button  class="btn btn-primary col-sm-4" type="submit">{{ 'process.file'|trans }}</button>
+        </div>
+    </form>
+
+
+{% endblock %}
+
+{#{% block javascripts %}#}
+{#<script>#}
+    {#$("body form").submit(function(e) {#}
+        {#e.preventDefault();#}
+        {#var formData = new FormData(this);#}
+        {#console.log(formData);#}
+        {#var proxy = 'https://cors-anywhere.herokuapp.com/';#}
+        {#$.ajax({#}
+            {#enctype: 'multipart/form-data',#}
+            {#url: proxy + $(this).attr("action"),#}
+            {#type: 'POST',#}
+            {#data: formData,#}
+            {#dataType: 'binary',#}
+            {#// async:false,#}
+            {#crossDomain: true,#}
+            {#success: function (data) {#}
+                {#console.log(data);#}
+                {#var a = document.createElement('a');#}
+                {#var url = window.URL.createObjectURL(data);#}
+                {#a.href = url;#}
+                {#a.download = 'myfile.pdf';#}
+                {#a.click();#}
+                {#window.URL.revokeObjectURL(url);#}
+            {#},#}
+            {#cache: false,#}
+            {#contentType: false,#}
+            {#processData: false,#}
+            {#// timeout: 600000,#}
+
+        {#});#}
+    {#});#}
+{#</script>#}
+{#{% endblock %}#}

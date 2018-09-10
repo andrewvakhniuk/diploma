@@ -31,6 +31,17 @@ homepage:
     defaults: { _controller: "AppBundle:Default:index" }
     methods:  [GET,POST]
 
+default_service:
+    path:     /service
+    defaults: { _controller: "AppBundle:Default:service" }
+    methods:  [GET]
+
+default_service_convert:
+    path:     /service/convert
+    defaults: { _controller: "AppBundle:Default:serviceConvert" }
+    methods:  [GET,POST]
+
+
 app_bundle_page:
     resource: "@AppBundle/Resources/config/routing/page.yml"
     prefix: /page

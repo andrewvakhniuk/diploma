@@ -11,7 +11,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DefaultController extends Controller
 {
-
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function navbar()
     {
 
@@ -24,6 +26,10 @@ class DefaultController extends Controller
     }
 
     // for admin priviligues / to show or not to show menu depends on roles
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function navbarConfigurations()
     {
 
@@ -43,12 +49,50 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request)
     {
-//        $em = $this->getDoctrine()->getManager();
 
-        // return index homepage
         return $this->render('default/index.html.twig', []);
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function serviceAction(){
+        return $this->render('default/service.html.twig', []);
+    }
+
+    public function serviceConvertAction(Request $request){
+        $file = $request->files->get('file');
+
+//        dump($file->getRealPath());die;
+        $url = 'http://braillescore.ibspan.waw.pl/uploader.php?direction=2';
+        $header = array('Content-Type: multipart/form-data');
+        $fields = array('uploaded_file' => '@' . $file->getRealPath());
+        $fields['charEncoding']='pl';
+        $fields['MAX_FILE_SIZE'] = 10000000;
+
+
+        $resource = curl_init();
+
+        curl_setopt($resource, CURLOPT_URL, $url);
+        curl_setopt($resource, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($resource, CURLOPT_POST, 1);
+        curl_setopt($resource, CURLOPT_POSTFIELDS, $fields);
+
+        curl_setopt($resource, CURLOPT_HEADER, 1);
+        curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($resource, CURLOPT_BINARYTRANSFER, 1);
+
+        $file = curl_exec($resource);
+
+        curl_close($resource);
+
+        dump($file);die;
+    }
 }
