@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets%}
+    <style>
+        img{
+            width:90%;
+        }
+    </style>
+{% endblock %}
 {% block body %}
 
     {{ page.content|raw }}
