@@ -109,10 +109,11 @@ class DefaultController extends Controller
                 $headers[$header_pieces[0]] = trim($header_pieces[1]);
             }
         }
+
         $response->headers->set('Content-type' , $headers['Content-Type']);
         $response->headers->set('Content-Disposition' , $headers['Content-Disposition']);
         $response->headers->set('Content-Description' , $headers['Content-Description']);
-         dump($headers['Content-Disposition']);die;
+
         $response->setContent($file_array[2]);
 
         return $response;
