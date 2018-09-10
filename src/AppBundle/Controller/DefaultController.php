@@ -112,7 +112,7 @@ class DefaultController extends Controller
         $response->headers->set('Content-type' , $headers['Content-Type']);
         $response->headers->set('Content-Disposition' , $headers['Content-Disposition']);
         $response->headers->set('Content-Description' , $headers['Content-Description']);
-         dump($headers['Content-Disposition']);
+         dump($headers['Content-Disposition']);die;
         $response->setContent($file_array[2]);
 
         return $response;
